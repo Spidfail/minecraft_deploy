@@ -1,0 +1,14 @@
+ARG IMAGE
+
+#####################################################
+FROM $IMAGE
+
+ARG ENTRYPOINT_FILE
+ARG VELOCITY_FILE_PATH
+
+WORKDIR /tmp
+
+COPY $ENTRYPOINT_FILE .
+COPY $VELOCITY_FILE_PATH .
+
+ENTRYPOINT /bin/sh $ENTRYPOINT_FILE

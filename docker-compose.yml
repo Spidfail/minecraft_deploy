@@ -1,0 +1,61 @@
+version: "3.3"
+
+services:
+  mc-serv:
+    image: ${IMAGE}
+    container_name: ${CONTAINER_NAME}
+    env_file: ./spygot/.env
+    build:
+      context: ./spygot
+      args:
+        - IMAGE
+        - SPIGOT_VER
+        - ENTRYPOINT_FILE
+        - SPYGOT_CONF_PATH
+        - CONFIG_FILE
+        - EULA_FILE
+        - SERVER_PATH
+        - RAM
+    ports:
+      - "${PORT_SERV_OUT}:${PORT_SERV_IN}"
+    networks:
+      - ${NETWORK_NAME}
+
+  #mc-serv:
+  #  image: amazoncorretto:11
+  #  container_name: mc-serv
+  #  build:
+  #    context: ./paper
+  #    args:
+  #      - IMAGE=amazoncorretto:11
+  #      - ENTRYPOINT_FILE
+  #      - PAPER_JAR_PATH
+  #      - PAPER_CONF_PATH
+  #      - EULA_FILE
+  #      - CONFIG_FILE
+  #  env_file: ./paper/.env
+  #  ports:
+  #    - "25565:25565"
+  #  networks:
+  #    - mc-internal
+
+  #mc-proxy:
+  #  image: sapmachine:latest
+  #  container_name: mc-proxy
+  #  depends_on:
+  #    - mc-serv
+  #  build:
+  #    context: ./velocity
+  #    args:
+  #      - IMAGE=sapmachine:latest
+  #      - ENTRYPOINT_FILE
+  #      - VELOCITY_FILE_PATH
+  #  env_file: ./velocity/.env
+  #  ports:
+  #    - "25577:25577"
+  #  networks:
+  #    - mc-internal
+
+networks:
+  mc-internal:
+    driver: bridge
