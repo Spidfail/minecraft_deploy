@@ -1,0 +1,5 @@
+[submodule "./spygot"]
+	url = git@github.com:Spidfail/minecraft_server.git
+[submodule "minecraft_server"]
+	path = minecraft_server
+	url = git@github.com:Spidfail/minecraft_server.git

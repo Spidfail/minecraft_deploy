@@ -4,9 +4,9 @@ services:
   mc-serv:
     image: ${IMAGE}
     container_name: ${CONTAINER_NAME}
-    env_file: ./spygot/.env
+    env_file: ./minecraft_server/.env
     build:
-      context: ./spygot
+      context: ./minecraft_server
       args:
         - IMAGE
         - SPIGOT_VER
